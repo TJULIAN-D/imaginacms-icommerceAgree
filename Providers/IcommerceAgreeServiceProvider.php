@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\IcommerceAgree\Providers;
+namespace Modules\Icommerceagree\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\IcommerceAgree\Events\Handlers\RegisterIcommerceAgreeSidebar;
+use Modules\Icommerceagree\Events\Handlers\RegisterIcommerceAgreeSidebar;
 
 class IcommerceAgreeServiceProvider extends ServiceProvider
 {
@@ -56,15 +56,15 @@ class IcommerceAgreeServiceProvider extends ServiceProvider
     private function registerBindings()
     {
         $this->app->bind(
-            'Modules\IcommerceAgree\Repositories\ConfigagreeRepository',
+            'Modules\Icommerceagree\Repositories\ConfigagreeRepository',
             function () {
-                $repository = new \Modules\IcommerceAgree\Repositories\Eloquent\EloquentConfigagreeRepository(new \Modules\IcommerceAgree\Entities\Configagree());
+                $repository = new \Modules\Icommerceagree\Repositories\Eloquent\EloquentConfigagreeRepository(new \Modules\Icommerceagree\Entities\Configagree());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\IcommerceAgree\Repositories\Cache\CacheConfigagreeDecorator($repository);
+                return new \Modules\Icommerceagree\Repositories\Cache\CacheConfigagreeDecorator($repository);
             }
         );
 // add bindings

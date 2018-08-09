@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\IcommerceAgree\Http\Controllers\Admin;
+namespace Modules\Icommerceagree\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\IcommerceAgree\Entities\Configagree;
-use Modules\IcommerceAgree\Http\Requests\CreateConfigagreeRequest;
-use Modules\IcommerceAgree\Http\Requests\UpdateConfigagreeRequest;
-use Modules\IcommerceAgree\Repositories\ConfigagreeRepository;
+use Modules\Icommerceagree\Entities\Configagree;
+use Modules\Icommerceagree\Http\Requests\CreateConfigagreeRequest;
+use Modules\Icommerceagree\Http\Requests\UpdateConfigagreeRequest;
+use Modules\Icommerceagree\Repositories\ConfigagreeRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Setting\Repositories\SettingRepository;
 class ConfigagreeController extends AdminBaseController

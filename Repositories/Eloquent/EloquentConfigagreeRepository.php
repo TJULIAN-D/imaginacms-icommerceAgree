@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\IcommerceAgree\Repositories\Eloquent;
+namespace Modules\Icommerceagree\Repositories\Eloquent;
 
-use Modules\IcommerceAgree\Repositories\ConfigagreeRepository;
+use Modules\Icommerceagree\Repositories\ConfigagreeRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
 class EloquentConfigagreeRepository extends EloquentBaseRepository implements ConfigagreeRepository

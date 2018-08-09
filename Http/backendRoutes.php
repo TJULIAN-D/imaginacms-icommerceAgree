@@ -5,7 +5,7 @@ use Illuminate\Routing\Router;
 
 $router->group(['prefix' =>'/icommerceagree'], function (Router $router) {
     $router->bind('configagree', function ($id) {
-        return app('Modules\IcommerceAgree\Repositories\ConfigagreeRepository')->find($id);
+        return app('Modules\Icommerceagree\Repositories\ConfigagreeRepository')->find($id);
     });
     $router->get('configagrees', [
         'as' => 'admin.icommerceagree.configagree.index',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\IcommerceAgree\Entities;
+namespace Modules\Icommerceagree\Entities;
 
 class Configagree
 {

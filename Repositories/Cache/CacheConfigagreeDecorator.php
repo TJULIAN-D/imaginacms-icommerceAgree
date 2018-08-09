@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\IcommerceAgree\Repositories\Cache;
+namespace Modules\Icommerceagree\Repositories\Cache;
 
-use Modules\IcommerceAgree\Repositories\ConfigagreeRepository;
+use Modules\Icommerceagree\Repositories\ConfigagreeRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheConfigagreeDecorator extends BaseCacheDecorator implements ConfigagreeRepository

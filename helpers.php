@@ -1,6 +1,6 @@
 <?php
 
-use Modules\IcommerceAgree\Entities\Configagree;
+use Modules\Icommerceagree\Entities\Configagree;
 
 if (! function_exists('icommerceagree_get_configuration')) {
 
