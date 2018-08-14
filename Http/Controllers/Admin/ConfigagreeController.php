@@ -49,8 +49,6 @@ class ConfigagreeController extends AdminBaseController
     public function update(Configagree $configagree, UpdateConfigagreeRequest $request)
     {
 
-        //if(!isset($request->status))
-        //   $request->merge(['status' => 0]);
         if($request->status=='on')
             $request['status'] = "1";
         else
