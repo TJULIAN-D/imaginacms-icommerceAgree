@@ -1,5 +1,5 @@
 {
-    "name": "IcommerceAgree",
+    "name": "Icommerceagree",
     "alias": "icommerceagree",
     "description": "I Agree - ShippingMethod Module to Icommerce",
     "keywords": [],
@@ -7,8 +7,8 @@
     "active": 1,
     "order": 1,
     "providers": [
-        "Modules\\IcommerceAgree\\Providers\\IcommerceAgreeServiceProvider",
-        "Modules\\IcommerceAgree\\Providers\\RouteServiceProvider"
+        "Modules\\Icommerceagree\\Providers\\IcommerceAgreeServiceProvider",
+        "Modules\\Icommerceagree\\Providers\\RouteServiceProvider"
     ],
     "aliases": {},
     "files": [
