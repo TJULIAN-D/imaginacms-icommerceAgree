@@ -38,6 +38,7 @@ class IcommerceagreeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('icommerceagree', 'permissions');
+        $this->publishConfig('icommerceagree', 'config');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }

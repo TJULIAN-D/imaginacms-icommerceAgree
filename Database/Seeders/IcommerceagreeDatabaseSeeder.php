@@ -4,6 +4,7 @@ namespace Modules\Icommerceagree\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Icommerce\Entities\ShippingMethod;
 
 class IcommerceagreeDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,17 @@ class IcommerceagreeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $options['init'] = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
+
+        $params = array(
+            'title' => trans('icommerceagree::icommerceagrees.single'),
+            'description' => trans('icommerceagree::icommerceagrees.description'),
+            'name' => config('asgard.icommerceagree.config.shippingName'),
+            'status' => 0,
+            'options' => $options
+        );
+
+        ShippingMethod::create($params);
+
     }
 }
