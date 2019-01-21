@@ -27,7 +27,7 @@ class RegisterIcommerceagreeSidebar implements \Maatwebsite\Sidebar\SidebarExten
 
     public function handle(BuildingSidebar $sidebar)
     {
-        $sidebar->add($this->extendWith($sidebar->getMenu()));
+        //$sidebar->add($this->extendWith($sidebar->getMenu()));
     }
 
     /**
