@@ -17,8 +17,8 @@
                     <?php $i++; ?>
                     <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="{{$method->name}}_tab_{{ $i }}">
                         
-                        {!! Form::i18nInput('title', trans('icommerce::paymentmethods.table.title'), $errors, $locale, $method) !!}
-                        {!! Form::i18nInput('description', trans('icommerce::paymentmethods.table.description'), $errors, $locale, $method) !!}
+                        {!! Form::i18nInput('title', '* '.trans('icommerce::paymentmethods.table.title'), $errors, $locale, $method) !!}
+                        {!! Form::i18nInput('description', '* '.trans('icommerce::paymentmethods.table.description'), $errors, $locale, $method) !!}
                     
                     </div>
                 @endforeach

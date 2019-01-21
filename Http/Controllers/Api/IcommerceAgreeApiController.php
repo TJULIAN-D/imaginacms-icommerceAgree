@@ -27,8 +27,8 @@ class IcommerceAgreeApiController extends BaseApiController
     /**
      * Init data
      * @param Requests request
-     * @param Requests products
-     * @param Requests options
+     * @param Requests array(items,total)
+     * @param Requests options array (countryCode,postCode,country)
      * @return route
      */
     public function init(Request $request){
