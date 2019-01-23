@@ -13,4 +13,17 @@ class CacheIcommerceAgreeDecorator extends BaseCacheDecorator implements Icommer
         $this->entityName = 'icommerceagree.icommerceagrees';
         $this->repository = $icommerceagree;
     }
+
+    /**
+   * List or resources
+   *
+   * @return mixed
+   */
+    public function calculate($parameters,$conf)
+    {
+        return $this->remember(function () use ($parameters,$conf) {
+            return $this->repository->calculate($parameters,$conf);
+        });
+    }
+
 }

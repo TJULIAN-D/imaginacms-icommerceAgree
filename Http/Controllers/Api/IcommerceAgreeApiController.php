@@ -11,41 +11,40 @@ use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Repositories
 use Modules\Icommerceagree\Repositories\IcommerceAgreeRepository;
-
+use Modules\Icommerce\Repositories\ShippingMethodRepository;
 
 class IcommerceAgreeApiController extends BaseApiController
 {
 
     private $icommerceagree;
+    private $shippingMethod;
    
     public function __construct(
-        IcommerceAgreeRepository $icommerceagree
+        IcommerceAgreeRepository $icommerceagree,
+        ShippingMethodRepository $shippingMethod
     ){
         $this->icommerceagree = $icommerceagree;
+        $this->shippingMethod = $shippingMethod;
     }
     
-    /**
+     /**
      * Init data
      * @param Requests request
-     * @param Requests array(items,total)
-     * @param Requests options array (countryCode,postCode,country)
-     * @return route
+     * @param Requests array products - items (object)
+     * @param Requests array products - total
+     * @return mixed
      */
     public function init(Request $request){
 
         try {
 
-            
-            // Msj
-            $response["msj"] = "success";
+            // Configuration
+            $shippingName = config('asgard.icommerceagree.config.shippingName');
+            $attribute = array('name' => $shippingName);
+            $shippingMethod = $this->shippingMethod->findByAttributes($attribute);
 
-            // Items
-            $response["items"] = null;
+            $response = $this->icommerceagree->calculate($request->all(),$shippingMethod->options);
 
-            // Price
-            $response["price"] = 0;
-            $response["priceshow"] = false;
-            
           } catch (\Exception $e) {
             //Message Error
             $status = 500;
