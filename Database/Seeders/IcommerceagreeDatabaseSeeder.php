@@ -19,15 +19,34 @@ class IcommerceagreeDatabaseSeeder extends Seeder
 
         $options['init'] = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
 
-        $params = array(
-            'title' => trans('icommerceagree::icommerceagrees.single'),
-            'description' => trans('icommerceagree::icommerceagrees.description'),
-            'name' => config('asgard.icommerceagree.config.shippingName'),
-            'status' => 0,
-            'options' => $options
-        );
+        $titleTrans = 'icommerceagree::icommerceagrees.single';
+        $descriptionTrans = 'icommerceagree::icommerceagrees.description';
 
-        ShippingMethod::create($params);
+        foreach (['en', 'es'] as $locale) {
 
+            if($locale=='en'){
+                $params = array(
+                    'title' => trans($titleTrans),
+                    'description' => trans($descriptionTrans),
+                    'name' => config('asgard.icommerceagree.config.shippingName'),
+                    'status' => 0,
+                    'options' => $options
+                );
+
+                $shippingMethod = ShippingMethod::create($params);
+                
+            }else{
+
+                $title = trans($titleTrans,[],$locale);
+                $description = trans($descriptionTrans,[],$locale);
+
+                $shippingMethod->translateOrNew($locale)->title = $title;
+                $shippingMethod->translateOrNew($locale)->description = $description;
+
+                $shippingMethod->save();
+            }
+
+        }// Foreach
+        
     }
 }
