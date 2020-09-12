@@ -1,12 +1,9 @@
-# asgardcms-icommerceagree
+# imaginacms-icommerceagree
 
 ## Seeder
-
-    run php artisan module:seed Icommerceagree
-
-## Configurations
-
-    Just active it
+```bash
+php artisan module:seed Icommerceagree
+```
 
 ## API
 
@@ -17,5 +14,3 @@
 
     ### Example
         https://mydomain/api/icommerceagree
-    
-    

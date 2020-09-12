@@ -29,7 +29,7 @@ class IcommerceagreeDatabaseSeeder extends Seeder
                     'title' => trans($titleTrans),
                     'description' => trans($descriptionTrans),
                     'name' => config('asgard.icommerceagree.config.shippingName'),
-                    'status' => 0,
+                    'status' => 1,
                     'options' => $options
                 );
 
