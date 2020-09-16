@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'single' => 'Agree',
+    'single' => 'A convenir',
     'description' => 'La descripcion del Modulo',
     'list resource' => 'List icommerceagrees',
     'create resource' => 'Create icommerceagrees',
