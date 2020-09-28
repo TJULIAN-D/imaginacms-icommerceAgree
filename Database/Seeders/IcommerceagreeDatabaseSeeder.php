@@ -17,36 +17,43 @@ class IcommerceagreeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $options['init'] = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
+        $name = config('asgard.icommerceagree.config.shippingName');
+        $result = ShippingMethod::where('name',$name)->first();
 
-        $titleTrans = 'icommerceagree::icommerceagrees.single';
-        $descriptionTrans = 'icommerceagree::icommerceagrees.description';
+        if(!$result){
+            $options['init'] = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
 
-        foreach (['en', 'es'] as $locale) {
+            $titleTrans = 'icommerceagree::icommerceagrees.single';
+            $descriptionTrans = 'icommerceagree::icommerceagrees.description';
 
-            if($locale=='en'){
-                $params = array(
-                    'title' => trans($titleTrans),
-                    'description' => trans($descriptionTrans),
-                    'name' => config('asgard.icommerceagree.config.shippingName'),
-                    'status' => 1,
-                    'options' => $options
-                );
+            foreach (['en', 'es'] as $locale) {
 
-                $shippingMethod = ShippingMethod::create($params);
-                
-            }else{
+                if($locale=='en'){
+                    $params = array(
+                        'title' => trans($titleTrans),
+                        'description' => trans($descriptionTrans),
+                        'name' => $name,
+                        'status' => 1,
+                        'options' => $options
+                    );
 
-                $title = trans($titleTrans,[],$locale);
-                $description = trans($descriptionTrans,[],$locale);
+                    $shippingMethod = ShippingMethod::create($params);
+                    
+                }else{
 
-                $shippingMethod->translateOrNew($locale)->title = $title;
-                $shippingMethod->translateOrNew($locale)->description = $description;
+                    $title = trans($titleTrans,[],$locale);
+                    $description = trans($descriptionTrans,[],$locale);
 
-                $shippingMethod->save();
-            }
+                    $shippingMethod->translateOrNew($locale)->title = $title;
+                    $shippingMethod->translateOrNew($locale)->description = $description;
 
-        }// Foreach
+                    $shippingMethod->save();
+                }
+
+            }// Foreach
+        }else{
+            $this->command->alert("This method has already been installed !!");
+        }
         
     }
 }
