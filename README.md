@@ -1,4 +1,4 @@
-# imaginacms-icommerceagree
+# imaginacms-icommerceagree (ShippingMethod)
 
 ## Seeder
 ```bash
