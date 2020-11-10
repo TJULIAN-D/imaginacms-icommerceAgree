@@ -29,7 +29,7 @@ class IcommerceagreeServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterIcommerceagreeSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('icommerceagrees', array_dot(trans('icommerceagree::icommerceagrees')));
+            $event->load('icommerceagrees', Arr::dot(trans('icommerceagree::icommerceagrees')));
             // append translations
 
         });
