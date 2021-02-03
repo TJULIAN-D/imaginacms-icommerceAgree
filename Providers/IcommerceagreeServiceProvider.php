@@ -40,6 +40,7 @@ class IcommerceagreeServiceProvider extends ServiceProvider
     {
         $this->publishConfig('icommerceagree', 'permissions');
         $this->publishConfig('icommerceagree', 'config');
+        $this->publishConfig('icommerceagree', 'crud-fields');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
