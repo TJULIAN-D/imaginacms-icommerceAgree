@@ -17,43 +17,62 @@ class IcommerceagreeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $name = config('asgard.icommerceagree.config.shippingName');
-        $result = ShippingMethod::where('name',$name)->first();
+        $methods = config('asgard.icommerceagree.config.methods');
 
-        if(!$result){
-            $options['init'] = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
+        if(count($methods)>0){
 
-            $titleTrans = 'icommerceagree::icommerceagrees.single';
-            $descriptionTrans = 'icommerceagree::icommerceagrees.description';
+            $init = "Modules\Icommerceagree\Http\Controllers\Api\IcommerceAgreeApiController";
 
-            foreach (['en', 'es'] as $locale) {
+            foreach ($methods as $key => $method) {
 
-                if($locale=='en'){
+                $result = ShippingMethod::where('name',$method['name'])->first();
+
+                if(!$result){
+
+                    $options['init'] = $init;
+
+                    $titleTrans = $method['title'];
+                    $descriptionTrans = $method['description'];
+
                     $params = array(
-                        'title' => trans($titleTrans),
-                        'description' => trans($descriptionTrans),
-                        'name' => $name,
-                        'status' => 1,
+                        'name' => $method['name'],
+                        'status' => $method['status'],
                         'options' => $options
                     );
 
+                    if(isset($method['parent_name']))
+                        $params['parent_name'] = $method['parent_name'];
+
                     $shippingMethod = ShippingMethod::create($params);
-                    
+
+                    $this->addTranslation($shippingMethod,'en',$titleTrans,$descriptionTrans);
+                    $this->addTranslation($shippingMethod,'es',$titleTrans,$descriptionTrans);
+
                 }else{
-
-                    $title = trans($titleTrans,[],$locale);
-                    $description = trans($descriptionTrans,[],$locale);
-
-                    $shippingMethod->translateOrNew($locale)->title = $title;
-                    $shippingMethod->translateOrNew($locale)->description = $description;
-
-                    $shippingMethod->save();
+                     $this->command->alert("This method: {$method['name']} has already been installed !!");
                 }
+            }
 
-            }// Foreach
         }else{
-            $this->command->alert("This method has already been installed !!");
+           $this->command->alert("No methods in the Config File !!"); 
         }
+ 
         
     }
+
+    /*
+    * Add Translations
+    * PD: New Alternative method due to problems with astronomic translatable
+    **/
+    public function addTranslation($shippingMethod,$locale,$title,$description){
+
+      \DB::table('icommerce__shipping_method_translations')->insert([
+          'title' => trans($title,[],$locale),
+          'description' => trans($description,[],$locale),
+          'shipping_method_id' => $shippingMethod->id,
+          'locale' => $locale
+      ]);
+
+    }
+
 }
