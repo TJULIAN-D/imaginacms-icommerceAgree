@@ -17,6 +17,7 @@ class IcommerceagreeDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call(IcommerceagreeModuleTableSeeder::class);
         $methods = config('asgard.icommerceagree.config.methods');
 
         //Only the methods that match with the config
