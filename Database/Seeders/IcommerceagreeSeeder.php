@@ -57,12 +57,14 @@ class IcommerceagreeSeeder extends Seeder
                     $this->addTranslation($shippingMethod,'es',$titleTrans,$descriptionTrans);
 
                 }else{
-                        $this->command->alert("This method: {$method['name']} has already been installed !!");
+                        //It doesn't work in jobs
+                        //$this->command->alert("This method: {$method['name']} has already been installed !!");
                 }
             }
 
         }else{
-            $this->command->alert("No methods in the Config File !!"); 
+            //It doesn't work in jobs
+            //$this->command->alert("No methods in the Config File !!"); 
         }
         
     }
